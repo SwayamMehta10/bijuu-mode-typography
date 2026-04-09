@@ -4,31 +4,152 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bijuu Mode Typography — Pretext</title>
+
+    <!--
+      Bebas Neue (silhouette text) + Inter (UI + fallback). Loaded via Google
+      Fonts so the demo doesn't need a build-time font subsetting step. Pretext
+      measures against the canvas-resolved font, so we await document.fonts.ready
+      in main.ts before any prepareWithSegments() call.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=block"
+      rel="stylesheet"
+    />
+
     <style>
       :root { color-scheme: dark; }
-      html, body { margin: 0; padding: 0; background: #0a0a0a; color: #e6e6e6; font-family: -apple-system, system-ui, sans-serif; }
-      main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
-      h1 { margin: 0 0 0.5rem; }
-      .tag { color: #8a8a8a; margin: 0 0 2rem; }
-      #article { width: 100%; padding: 0.75rem; background: #151515; border: 1px solid #262626; border-radius: 8px; color: inherit; font: inherit; box-sizing: border-box; margin-bottom: 1rem; resize: vertical; }
-      .stage { background: #0f0f0f; border: 1px solid #1f1f1f; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; display: grid; place-items: center; }
-      #canvas { display: block; max-width: 100%; }
-      #export { padding: 0.75rem 1.5rem; background: #4a9eff; border: none; border-radius: 8px; color: #000; font: inherit; font-weight: 600; cursor: pointer; }
-      .error-banner { background: #4a1515; border: 1px solid #7a2a2a; padding: 0.75rem; border-radius: 8px; display: none; margin-bottom: 1rem; }
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #050505;
+        color: #e6e6e6;
+        font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem;
+        gap: 1rem;
+      }
+      header {
+        text-align: center;
+        max-width: 800px;
+      }
+      h1 {
+        margin: 0 0 0.25rem;
+        font-family: 'Bebas Neue', sans-serif;
+        font-weight: normal;
+        font-size: 2.5rem;
+        letter-spacing: 0.05em;
+      }
+      .tag {
+        margin: 0;
+        color: #8a8a8a;
+        font-size: 0.9rem;
+      }
+      .tag a { color: #4a9eff; text-decoration: none; }
+      .tag a:hover { text-decoration: underline; }
+      .stage {
+        background: #0a0a0a;
+        border: 1px solid #1a1a1a;
+        border-radius: 16px;
+        padding: 1rem;
+        position: relative;
+      }
+      #canvas {
+        display: block;
+        width: 800px;
+        height: 800px;
+        max-width: 90vw;
+        max-height: 90vw;
+      }
+      .controls {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .controls button {
+        padding: 0.6rem 1.2rem;
+        background: #151515;
+        border: 1px solid #2a2a2a;
+        border-radius: 8px;
+        color: inherit;
+        font: inherit;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: border-color 0.15s, background 0.15s;
+      }
+      .controls button:hover {
+        border-color: #4a9eff;
+      }
+      .controls button.primary {
+        background: #4a9eff;
+        border-color: #4a9eff;
+        color: #050505;
+        font-weight: 600;
+      }
+      .controls button.primary:hover {
+        background: #66adff;
+      }
+      .controls button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .error-banner {
+        background: #4a1515;
+        border: 1px solid #7a2a2a;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        display: none;
+        max-width: 800px;
+      }
       .error-banner.shown { display: block; }
+      footer {
+        margin-top: auto;
+        padding-top: 1rem;
+        color: #5a5a5a;
+        font-size: 0.8rem;
+        text-align: center;
+      }
+      footer a { color: #7a7a7a; }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Bijuu Mode Typography</h1>
-      <p class="tag">Any text, rendered as a tailed-beast silhouette.</p>
-      <div id="font-error" class="error-banner">Font failed to load. Demo layout may be incorrect. Refresh to retry.</div>
-      <textarea id="article" rows="4" placeholder="Paste a long article, Wikipedia page, or manga chapter..."></textarea>
-      <div class="stage">
-        <canvas id="canvas"></canvas>
-      </div>
-      <button id="export">Export PNG</button>
-    </main>
+    <header>
+      <h1>BIJUU MODE TYPOGRAPHY</h1>
+      <p class="tag">
+        Text routed inside a Naruto silhouette via
+        <a href="https://github.com/chenglou/pretext">@chenglou/pretext</a>'s
+        per-line variable-width layout.
+      </p>
+    </header>
+
+    <div id="font-error" class="error-banner">
+      Font failed to load. Demo layout may be incorrect. Refresh to retry.
+    </div>
+
+    <div class="stage">
+      <canvas id="canvas" width="800" height="800"></canvas>
+    </div>
+
+    <div class="controls">
+      <button id="replay">Replay</button>
+      <button id="snap">Snap PNG</button>
+      <button id="record" class="primary">Record 10s WebM</button>
+    </div>
+
+    <footer>
+      Built with
+      <a href="https://github.com/chenglou/pretext">@chenglou/pretext</a>
+      ·
+      <a href="https://github.com/SwayamMehta10/bijuu-mode-typography">Source</a>
+    </footer>
+
     <script type="module" src="/src/demos/bijuu/main.ts"></script>
   </body>
 </html>

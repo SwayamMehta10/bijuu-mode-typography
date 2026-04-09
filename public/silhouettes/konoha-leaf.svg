@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Konoha leaf — V1 silhouette for Bijuu Mode Typography.
+
+  This is a simplified leaf-teardrop shape that approximates the Konoha
+  village emblem. It's convex by construction (each y-row has a single
+  contiguous opaque interval) so the V1 single-interval scanline extractor
+  in src/demos/bijuu/scanlines.ts can route text through it line by line.
+
+  The shape: tall teardrop with the point at the top, fattest at ~70% height,
+  rounded base. Roughly leaf-proportioned (taller than wide). Drawn with two
+  cubic bezier curves — one for each side — meeting at the top point and the
+  bottom curve.
+
+  To swap in a hand-traced character silhouette, replace this file (or add a
+  new one and update the import in src/demos/bijuu/main.ts). Any near-convex
+  filled shape will work — Tailed Beasts, kunai, headbands, all fine.
+-->
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M 256 32
+       C 320 120, 400 200, 440 320
+       C 460 400, 400 470, 256 470
+       C 112 470, 52 400, 72 320
+       C 112 200, 192 120, 256 32
+       Z"
+    fill="#000000"
+  />
+</svg>

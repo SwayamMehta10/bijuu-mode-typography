@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Pipeline smoke test fallback — a guaranteed-convex circle. If the Bijuu
+  layout pipeline doesn't work against this, the bug is in the pipeline,
+  not the silhouette. Use during development to isolate scanline-extractor
+  bugs from silhouette-shape bugs.
+-->
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="256" cy="256" r="240" fill="#000000" />
+</svg>
