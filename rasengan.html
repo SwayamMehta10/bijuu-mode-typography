@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rasengan Composer — Pretext</title>
+    <style>
+      :root { color-scheme: dark; }
+      html, body { margin: 0; padding: 0; background: #050a12; color: #e6e6e6; font-family: -apple-system, system-ui, sans-serif; }
+      #canvas { display: block; width: 100vw; height: 100vh; }
+      .controls { position: fixed; top: 1rem; left: 1rem; right: 1rem; display: flex; flex-direction: column; gap: 0.5rem; max-width: 640px; }
+      .examples { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+      .examples button { padding: 0.5rem 0.75rem; background: #0f1824; border: 1px solid #1d2e45; border-radius: 8px; color: inherit; font: inherit; cursor: pointer; }
+      .examples button:hover { border-color: #4a9eff; }
+      #input { width: 100%; padding: 0.75rem; background: #0f1824; border: 1px solid #1d2e45; border-radius: 8px; color: inherit; font: inherit; box-sizing: border-box; }
+      #launch { padding: 0.75rem 1.5rem; background: #4a9eff; border: none; border-radius: 8px; color: #000; font: inherit; font-weight: 600; cursor: pointer; align-self: flex-start; }
+      .error-banner { background: #4a1515; border: 1px solid #7a2a2a; padding: 0.75rem; border-radius: 8px; display: none; }
+      .error-banner.shown { display: block; }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <div class="controls">
+      <div id="font-error" class="error-banner">Font failed to load. Demo layout may be incorrect. Refresh to retry.</div>
+      <div class="examples">
+        <button data-example="skill issue 🔥" data-font="Inter">skill issue 🔥</button>
+        <button data-example="नमस्ते 🥷" data-font="Noto Sans Devanagari">नमस्ते 🥷</button>
+        <button data-example="นินจา สวัสดี" data-font="Noto Sans Thai">นินจา สวัสดี</button>
+        <button data-example="螺旋丸 🌀" data-font="Noto Sans JP">螺旋丸 🌀</button>
+      </div>
+      <textarea id="input" rows="2" placeholder="Type anything... 🔥 नमस्ते 🥷 螺旋丸"></textarea>
+      <button id="launch">Launch</button>
+    </div>
+    <script type="module" src="/src/demos/rasengan/main.ts"></script>
+  </body>
+</html>

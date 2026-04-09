@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pretext Demos</title>
+    <style>
+      :root { color-scheme: dark; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #0a0a0a;
+        color: #e6e6e6;
+        font: 16px/1.5 -apple-system, system-ui, sans-serif;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+      }
+      main { max-width: 720px; }
+      h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 0.5rem; }
+      .tag { color: #8a8a8a; margin: 0 0 2.5rem; }
+      .demos { display: grid; gap: 1rem; }
+      a.demo {
+        display: block;
+        padding: 1.25rem 1.5rem;
+        background: #151515;
+        border: 1px solid #262626;
+        border-radius: 12px;
+        text-decoration: none;
+        color: inherit;
+        transition: border-color 0.15s, transform 0.15s;
+      }
+      a.demo:hover { border-color: #4a9eff; transform: translateY(-2px); }
+      a.demo h2 { margin: 0 0 0.25rem; font-size: 1.25rem; }
+      a.demo p { margin: 0; color: #8a8a8a; font-size: 0.9rem; }
+      footer { margin-top: 3rem; color: #5a5a5a; font-size: 0.85rem; }
+      footer a { color: #7a7a7a; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Pretext demos</h1>
+      <p class="tag">Three weekend demos built on <a href="https://github.com/chenglou/pretext" style="color: #4a9eff;">@chenglou/pretext</a>.</p>
+      <div class="demos">
+        <a class="demo" href="/rasengan.html">
+          <h2>Rasengan Composer</h2>
+          <p>Type anything in any language. It becomes a spiraling chakra ball.</p>
+        </a>
+        <a class="demo" href="/manga.html">
+          <h2>Manga Shrinkwrap</h2>
+          <p>Speech bubbles that hug text tighter than any CSS property can.</p>
+        </a>
+        <a class="demo" href="/bijuu.html">
+          <h2>Bijuu Mode Typography</h2>
+          <p>Any text rendered as a tailed-beast silhouette, line by line.</p>
+        </a>
+      </div>
+      <footer>
+        Built on <a href="https://github.com/chenglou/pretext">chenglou/pretext</a>.
+      </footer>
+    </main>
+  </body>
+</html>

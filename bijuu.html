@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bijuu Mode Typography — Pretext</title>
+    <style>
+      :root { color-scheme: dark; }
+      html, body { margin: 0; padding: 0; background: #0a0a0a; color: #e6e6e6; font-family: -apple-system, system-ui, sans-serif; }
+      main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+      h1 { margin: 0 0 0.5rem; }
+      .tag { color: #8a8a8a; margin: 0 0 2rem; }
+      #article { width: 100%; padding: 0.75rem; background: #151515; border: 1px solid #262626; border-radius: 8px; color: inherit; font: inherit; box-sizing: border-box; margin-bottom: 1rem; resize: vertical; }
+      .stage { background: #0f0f0f; border: 1px solid #1f1f1f; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; display: grid; place-items: center; }
+      #canvas { display: block; max-width: 100%; }
+      #export { padding: 0.75rem 1.5rem; background: #4a9eff; border: none; border-radius: 8px; color: #000; font: inherit; font-weight: 600; cursor: pointer; }
+      .error-banner { background: #4a1515; border: 1px solid #7a2a2a; padding: 0.75rem; border-radius: 8px; display: none; margin-bottom: 1rem; }
+      .error-banner.shown { display: block; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Bijuu Mode Typography</h1>
+      <p class="tag">Any text, rendered as a tailed-beast silhouette.</p>
+      <div id="font-error" class="error-banner">Font failed to load. Demo layout may be incorrect. Refresh to retry.</div>
+      <textarea id="article" rows="4" placeholder="Paste a long article, Wikipedia page, or manga chapter..."></textarea>
+      <div class="stage">
+        <canvas id="canvas"></canvas>
+      </div>
+      <button id="export">Export PNG</button>
+    </main>
+    <script type="module" src="/src/demos/bijuu/main.ts"></script>
+  </body>
+</html>

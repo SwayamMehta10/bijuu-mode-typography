@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manga Shrinkwrap — Pretext</title>
+    <style>
+      :root { color-scheme: dark; }
+      html, body { margin: 0; padding: 0; background: #0a0a0a; color: #e6e6e6; font-family: -apple-system, system-ui, sans-serif; }
+      main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+      h1 { margin: 0 0 0.5rem; }
+      .tag { color: #8a8a8a; margin: 0 0 2rem; }
+      #dialogue { width: 100%; padding: 0.75rem; background: #151515; border: 1px solid #262626; border-radius: 8px; color: inherit; font: inherit; box-sizing: border-box; margin-bottom: 1rem; resize: vertical; }
+      .examples { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+      .examples button { padding: 0.5rem 0.75rem; background: #151515; border: 1px solid #262626; border-radius: 8px; color: inherit; font: inherit; cursor: pointer; }
+      .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+      .panel { background: #111; padding: 1.5rem; border: 1px solid #262626; border-radius: 12px; }
+      .panel h2 { margin: 0 0 1rem; font-size: 1rem; color: #8a8a8a; font-weight: 500; }
+      #export { padding: 0.75rem 1.5rem; background: #4a9eff; border: none; border-radius: 8px; color: #000; font: inherit; font-weight: 600; cursor: pointer; }
+      .error-banner { background: #4a1515; border: 1px solid #7a2a2a; padding: 0.75rem; border-radius: 8px; display: none; margin-bottom: 1rem; }
+      .error-banner.shown { display: block; }
+      @media (max-width: 700px) { .comparison { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Manga Shrinkwrap</h1>
+      <p class="tag">Speech bubbles that hug text tighter than CSS can.</p>
+      <div id="font-error" class="error-banner">Font failed to load. Demo layout may be incorrect. Refresh to retry.</div>
+      <textarea id="dialogue" rows="3" placeholder="Type dialogue..."></textarea>
+      <div class="examples">
+        <button data-example="I never go back on my word. That's my ninja way.">Ninja way</button>
+        <button data-example="Believe it!">Short</button>
+        <button data-example="Looks like you could use a hand. Mind if I come along?">Medium</button>
+      </div>
+      <div class="comparison">
+        <div class="panel">
+          <h2>CSS fit-content</h2>
+          <div id="css-bubble"></div>
+        </div>
+        <div class="panel">
+          <h2>Pretext shrinkwrap</h2>
+          <canvas id="pretext-bubble"></canvas>
+        </div>
+      </div>
+      <button id="export">Export PNG</button>
+    </main>
+    <script type="module" src="/src/demos/manga/main.ts"></script>
+  </body>
+</html>
