@@ -1,10 +1,9 @@
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
-// Multi-page build: each demo is its own HTML entry point with shared modules
-// in src/shared/. Single deploy, one bundle per demo, shared chunk extracted.
-// See design doc issue 1B. Using import.meta.url avoids needing @types/node
-// just for `path` + `__dirname`.
+// Single-demo Vite config: bijuu.html is the demo entry point, index.html is
+// a thin landing that redirects to /bijuu.html so the deploy URL works at root.
+// Using import.meta.url avoids needing @types/node just for `path` + `__dirname`.
 const r = (rel: string) => fileURLToPath(new URL(rel, import.meta.url))
 
 export default defineConfig({
@@ -12,14 +11,12 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: r('./index.html'),
-        rasengan: r('./rasengan.html'),
-        manga: r('./manga.html'),
         bijuu: r('./bijuu.html'),
       },
     },
   },
   server: {
     port: 5173,
-    open: '/',
+    open: '/bijuu.html',
   },
 })
